@@ -82,7 +82,7 @@ services:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       ACCOUNT_SERVICE_PASSWORD: $ACCOUNT_SERVICE_PASSWORD
       MONGODB_PASSWORD: $MONGODB_PASSWORD
-    image: sqshq/piggymetrics-account-service
+    image: ssundaram1000/piggymetrics-account-service
     restart: always
     depends_on:
       config:
