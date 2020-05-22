@@ -1,0 +1,41 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image
+      inputs:
+        containerRegistry: 'dockerhub-dockerhub'
+        repository: 'ssundaram1000/piggymetrics-account-service'
+        command: 'buildAndPush'
+        dockerfile: '$(Build.SourcesDirectory)/account-service/Dockerfile'
+        tags: |
+          $(tag)    
+    # - task: CopyFiles@2
+    #   inputs:
+    #     SourceFolder: '$(System.DefaultWorkingDirectory)/account-service'
+    #     Contents: '**'
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)/account-service'
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #     ArtifactName: 'manifests'
+    #     publishLocation: 'Container'
