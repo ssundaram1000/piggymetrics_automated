@@ -1,0 +1,21 @@
+# Intellij
+.github/
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Eclipse
+**/*.project
+**/*.classpath
+**/*.settings
+
+# Files
+action-items.txt
+docker-compose.save.yml
